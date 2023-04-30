@@ -1,42 +1,38 @@
-import React, { Component } from 'react';
-import { Square } from './Square.js';
+import React, { useState } from 'react';
+import Square from './Square.js';
 import "./Board.css";
 
-export default class Board extends Component {
+const Board = ({squares, onClick}) =>{
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            squares : Array(9).fill.null,
-        };
+    const renderSquare = (i) => {
+        return <Square value = {squares[i]}
+        onClick = {() => onClick(i) }/>
     }
 
-    renderSquare (i) {
-        return <Square value = {this.state.squares[i]}/>
-    }
 
-    render() {
     return (
         <div>
-            <div className='status'>NextPlayer : X, O</div>
+
             <div className='board-row'>
-                {this.renderSquare(0)}
-                {this.renderSquare(1)}
-                {this.renderSquare(2)}
+                {renderSquare(0)}
+                {renderSquare(1)}
+                {renderSquare(2)}
             </div>
 
             <div className='board-row'>
-                {this.renderSquare(3)}
-                {this.renderSquare(4)}
-                {this.renderSquare(5)}
+                {renderSquare(3)}
+                {renderSquare(4)}
+                {renderSquare(5)}
             </div>
 
             <div className='board-row'>
-                {this.renderSquare(6)}
-                {this.renderSquare(7)}
-                {this.renderSquare(8)}
+                {renderSquare(6)}
+                {renderSquare(7)}
+                {renderSquare(8)}
             </div>
         </div>
     )
-  }
 }
+export default Board
+
+
